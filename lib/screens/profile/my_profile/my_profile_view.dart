@@ -79,7 +79,7 @@ class MyProfileView extends StatelessWidget {
                 MyProfileWidget.commonListTile(
                     title: 'Privacy Policy',
                     onTap: () {
-                      Get.to(()=>PrivacyPolicyScreen());
+                      Get.to(()=> PrivacyPolicyScreen());
                     },
                     image: 'assets/icons/ic-security.png'),
 
@@ -93,7 +93,7 @@ class MyProfileView extends StatelessWidget {
                 MyProfileWidget.commonListTile(
                     title: 'Profile',
                     onTap: () {
-                      Get.to(()=>DocumentScreen());
+                      Get.to(()=>DocumentScreen(isFromTenant: false,));
                     },
                     image: 'assets/icons/Group 26.png'),
                 Padding(

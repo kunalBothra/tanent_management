@@ -25,7 +25,11 @@ class PersonalInfo extends StatelessWidget {
         actions: [
           Padding(
             padding: EdgeInsets.all(8.r),
-            child: Text('Skip', style: CustomStyles.skipBlack),
+            child: InkWell(
+                onTap: (){
+                  personalInfoCntrl.onSkipTap();
+                },
+                child: Text('Skip', style: CustomStyles.skipBlack)),
           )
         ],
       ),
@@ -163,7 +167,7 @@ class PersonalInfo extends StatelessWidget {
                   ),
                   customButton(
                       onPressed: () {
-                        Get.to(()=> LandlordDocView());
+                        personalInfoCntrl.onNextTap();
                       },
                       text: 'Next',
                       width: Get.width,

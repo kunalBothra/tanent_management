@@ -11,9 +11,11 @@ import 'package:tanent_management/screens/profile/edit_profile/edit_profile_cont
 import 'package:tanent_management/screens/profile/edit_profile/edit_profile_widget.dart';
 
 import '../../../../common/text_styles.dart';
+import '../../../common/constants.dart';
 
 class EditProfileVew extends StatelessWidget {
-  EditProfileVew({super.key});
+  final bool isFromProfile;
+  EditProfileVew({super.key, required this.isFromProfile});
 
   final editCntrl = Get.put(EditProfileController());
   final authCntrl = Get.put(AuthController());
@@ -23,41 +25,22 @@ class EditProfileVew extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
-        title: Text('Personal Information', style: CustomStyles.otpStyle050505),
-        actions: [
-          Padding(
-            padding: EdgeInsets.all(8.r),
-            child: Text('Skip', style: CustomStyles.skipBlack),
-          )
-        ],
+        centerTitle: true,
+        title: Text('Edit Profile', style: CustomStyles.otpStyle050505),
+
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Container(
-                color: HexColor('#679BF1'),
-                height: 5.h,
-                width: Get.width / 2,
-              ),
-              Container(
-                color: HexColor('#F8F8F8'),
-                height: 5.h,
-                width: Get.width / 2,
-              ),
-            ],
-          ),
+          Divider(color:HexColor('#EBEBEB'),height: 1.h,),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 5.h),
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  Text('Personal Information', style: CustomStyles.skipBlack),
-                  Divider(),
-                  SizedBox(
+                 SizedBox(
                     height: 10.h,
                   ),
                   Row(
@@ -84,10 +67,7 @@ class EditProfileVew extends StatelessWidget {
                           Positioned(
                             bottom: 0.h,
                               right: 0.w,
-                              child: Image.asset(
-                            'assets/icons/edit.png',
-                            height: 30.h,
-                          ))
+                              child: editIcon)
                         ],
                       ),
                     ],
@@ -110,6 +90,7 @@ class EditProfileVew extends StatelessWidget {
                   customTextField(
                       controller: editCntrl.emailCntrl.value,
                       focusNode: editCntrl.emailFocus.value,
+                      keyboardType: TextInputType.emailAddress,
                       hintText: 'Type Here...',
                       isBorder: true,
                       color: HexColor('#F7F7F7'),
@@ -117,13 +98,14 @@ class EditProfileVew extends StatelessWidget {
                   SizedBox(
                     height: 5.h,
                   ),
-                  EditProfileWidget.commomText('Mobile Number',
-                      isMandatory: true),
+                  EditProfileWidget.commomText('Mobile Number'),
                   customTextField(
                       controller: editCntrl.phoneCntrl.value,
                       focusNode: editCntrl.phoneFocus.value,
+                      keyboardType: TextInputType.number,
                       hintText: 'Enter Mobile Number',
                       isBorder: true,
+                      maxLength: 10,
                       color: HexColor('#F7F7F7'),
                       isFilled: false,
                       isForCountryCode: true),
@@ -134,6 +116,7 @@ class EditProfileVew extends StatelessWidget {
                   customTextField(
                       controller: editCntrl.permanentAddCntrl.value,
                       focusNode: editCntrl.permanentFocus.value,
+                      keyboardType: TextInputType.streetAddress,
                       hintText: 'Type Here...',
                       isBorder: true,
                       color: HexColor('#F7F7F7'),
@@ -142,23 +125,12 @@ class EditProfileVew extends StatelessWidget {
                   SizedBox(
                     height: 5.h,
                   ),
-                  EditProfileWidget.commomText('Pincode', isMandatory: true),
-                  customTextField(
-                      controller: editCntrl.pinNoCntrl.value,
-                      focusNode: editCntrl.pinNoFocus.value,
-                      hintText: 'Type Here...',
-                      isBorder: true,
-                      color: HexColor('#F7F7F7'),
-                      isFilled: false),
-                  SizedBox(
-                    height: 5.h,
-                  ),
                   Row(
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          EditProfileWidget.commomText('City'),
+                          EditProfileWidget.commomText('Street'),
                           customTextField(
                               width: Get.width / 2.3,
                               hintText: 'Type Here...',
@@ -171,7 +143,7 @@ class EditProfileVew extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          EditProfileWidget.commomText('State'),
+                          EditProfileWidget.commomText('Postalcode'),
                           customTextField(
                               width: Get.width / 2.3,
                               hintText: 'Type Here...',
@@ -182,11 +154,24 @@ class EditProfileVew extends StatelessWidget {
                       )
                     ],
                   ),
+
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  EditProfileWidget.commomText('City'),
+                  customTextField(
+                      controller: editCntrl.pinNoCntrl.value,
+                      focusNode: editCntrl.pinNoFocus.value,
+                      hintText: 'Select',
+                      suffixIcon: dropDownArrowIcon,
+                      isBorder: true,
+                      color: HexColor('#F7F7F7'),
+                      isFilled: false),
                   customButton(
                       onPressed: () {
                         Get.to(() => LandlordDocView());
                       },
-                      text: 'Next',
+                      text: 'Update',
                       width: Get.width,
                       verticalPadding: 10.h),
                   SizedBox(

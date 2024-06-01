@@ -80,7 +80,7 @@ class MyProfileWidget {
               ),
               InkWell(
                 onTap:() {
-                  profileCntrl.onEditProfileTap();
+                  profileCntrl.onEditProfileTap(true);
                   },
                 child: Container(
                   height: 30.h,

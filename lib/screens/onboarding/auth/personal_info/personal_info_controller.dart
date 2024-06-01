@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../../common/text_styles.dart';
+import '../landlord_document/landlord_view.dart';
 
 class PersonalInfoController extends GetxController{
 
@@ -32,6 +33,13 @@ class PersonalInfoController extends GetxController{
 
 
 
-  //Common Widget
+  //functions
+   onSkipTap(){
+      Get.to(()=> LandlordDocView());
+   }
+
+   onNextTap(){
+      Get.to(()=> LandlordDocView());
+   }
 
 }

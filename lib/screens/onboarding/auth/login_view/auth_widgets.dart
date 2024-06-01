@@ -68,10 +68,15 @@ class AuthWidget{
                   button1: 'Landlord',
                   button2: 'Tenants',
                   onButton1Tap: () {
+                    Get.back();
                     Get.to(()=>
                         PersonalInfo());
                   },
-                  onButton2Tap: (){},
+                  onButton2Tap: (){
+                    Get.back();
+                    Get.to(()=>
+                        PersonalInfo());
+                  },
                 );
               },text: 'Register Now',height: 37.h)
             ],

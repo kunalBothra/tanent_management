@@ -11,7 +11,7 @@ import 'package:tanent_management/common/constants.dart';
 import 'package:tanent_management/screens/onboarding/auth/landlord_document/landlord_controller.dart';
 
 class LandlordDocWidget {
-  final landlordCntrl = Get.find<LandlordDocController>();
+  final landlordCntrl = Get.put(LandlordDocController());
 
   static commomText(String title, {double? fontsize}) {
     return Padding(
@@ -24,103 +24,107 @@ class LandlordDocWidget {
 
   //Doc Add
   static commonDocUpload({dynamic? image, String? title}) {
-    return Padding(
-      padding:  EdgeInsets.only(top: 12.h,bottom: 10.h),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.r),
-        child: image != null
-            ? Container(
-                height: 120.h,
-                width: Get.width,
-                decoration: BoxDecoration(
-                  color: HexColor('#EBEBEB'),
-                  borderRadius: BorderRadius.circular(10.r),
-                  image: DecorationImage(
-                      image: Image.asset('assets/icons/profile.png').image,
-                      fit: BoxFit.cover),
+   final landlordCntrl= Get.find<LandlordDocController>();
+
+    return InkWell(
+      onTap: (){
+       LandlordDocWidget(). showSelectionDialog(Get.context!);
+      },
+      child: Padding(
+        padding:  EdgeInsets.only(top: 12.h,bottom: 10.h),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.r),
+          child: landlordCntrl.imageFile.value != null
+              ? Container(
+                  height: 120.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: HexColor('#EBEBEB'),
+                    borderRadius: BorderRadius.circular(10.r),
+                    image: DecorationImage(
+                        // image: Image.asset('assets/icons/profile.png').image,
+                      image: Image.file(landlordCntrl.imageFile.value!).image,
+                        fit: BoxFit.cover),
+                  ),
+                )
+              : Container(
+                  height: 120.h,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                    color: HexColor('#EBEBEB'),
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      cameraIcon,
+                      Text(title!,
+                          style: TextStyle(
+                              color: HexColor('#606060'), fontSize: 14.sp)),
+                    ],
+                  ),
                 ),
-              )
-            : Container(
-                height: 120.h,
-                width: Get.width,
-                decoration: BoxDecoration(
-                  color: HexColor('#EBEBEB'),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    cameraIcon,
-                    Text(title!,
-                        style: TextStyle(
-                            color: HexColor('#606060'), fontSize: 14.sp)),
-                  ],
-                ),
-              ),
+        ),
       ),
     );
   }
 
   //Show Gallery Dialogue
-  Future<void> showSelectionDialog(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      builder: (BuildContext _) {
-        return Container(
+  Future<void>  showSelectionDialog(BuildContext context) {
+    return Get.bottomSheet(
+        Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-
+          height: 250.h,
+          decoration:  BoxDecoration(
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r), topRight: Radius.circular(20.r)),
+            color: Colors.black87
           ),
-          child: Column(children: [
-            Padding(
-                padding: const EdgeInsets.fromLTRB(20.0, 180.0, 20.0, 20.0),
-                child: Text(
-                  "Choose one to upload a picture",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 14.sp, color: whiteColor),
-                )),
-            ListTile(
-              title: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    selectionCont('Gallery', 'assets/icons/pictures.png', 1),
-                    SizedBox(
-                      width: 25.w,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                    child: Text(
+                      "Choose one to upload a picture",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                    )),
+                ListTile(
+                  title: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        selectionCont('Gallery', 'assets/icons/pictures.png', 1),
+                        SizedBox(
+                          width: 25.w,
+                        ),
+                        selectionCont('Camera', 'assets/icons/camera.png', 2),
+                      ],
                     ),
-                    selectionCont('Camera', 'assets/icons/camera.png', 2),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 120.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: TextButton(
-                  style: ButtonStyle(
-                    overlayColor: MaterialStateColor.resolveWith(
-                            (states) => Colors.transparent),
                   ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "Cancel",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14.sp, color: whiteColor),
-                  )),
-            ),
-          ]),
-        );
-      },
-      isScrollControlled: true,
-      useRootNavigator: true,
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextButton(
+                      style: ButtonStyle(
+                        overlayColor: MaterialStateColor.resolveWith(
+                                (states) => Colors.transparent),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Cancel",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                      )),
+                ),
+              ]),
+        )
     );
   }
 
@@ -130,7 +134,7 @@ class LandlordDocWidget {
       height: 100,
       width: 100,
       child: Material(
-        color: Colors.black,
+        color: Colors.black87,
         child: StatefulBuilder(
           builder: (context, setState) => InkWell(
             onTap: () {
@@ -172,15 +176,16 @@ class LandlordDocWidget {
 
 //get from gallery
 static  getFromGallery() async {
+  final landlordCntrl = Get.find<LandlordDocController>();
     dynamic pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
     if (pickedFile != null) {
-
-     // landlordCntrl.imageFile.value = File( pickedFile.path) as Rxn<File>;
+     landlordCntrl.imageFile.value = File(pickedFile.path);
 
     } else {
       log("no file selected");
+      return null;
     }
   }
 
@@ -192,12 +197,15 @@ static  getFromCamera() async {
       listImagePaths = await ImagePickers.openCamera(
           compressSize: 500,
           cropConfig: CropConfig(enableCrop: false, width: 2, height: 1));
+      return listImagePaths;
     } catch (e) {
       log(e.toString());
+      // return null;
     }
     if (listImagePaths != null) {
+      final landlordCntrl = Get.find<LandlordDocController>();
 
-       // landlordCntrl.imageFile.value = File(listImagePaths!.path!) as Rxn<File>;
+       landlordCntrl.imageFile.value = File(listImagePaths!.path!);
 
     } else {
       log('no file selected');

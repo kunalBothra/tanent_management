@@ -82,14 +82,18 @@ class LandlordDocView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      customBorderButton('Previous', () {},
+                      customBorderButton('Previous', () {
+                        landlordDocCntrl.onPreviousTap();
+                      },
                           verticalPadding: 10.h,
                           horizontalPadding: 2.w,
                           btnHeight: 40.h,
                           width: Get.width / 2.3,
                           borderColor: HexColor('#679BF1'),
                           textColor: HexColor('#679BF1')),
-                      customBorderButton('Submit', () {},
+                      customBorderButton('Submit', () {
+                        landlordDocCntrl.onSubmitTap();
+                      },
                           verticalPadding: 10.h,
                           horizontalPadding: 2.w,
                           btnHeight: 40.h,

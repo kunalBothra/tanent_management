@@ -37,7 +37,7 @@ class AuthController extends GetxController{
   }
 
   onOtpSubmitPressed(){
-    Get.to(()=>const NavBar(initialPage: 0));
+    Get.offAll(()=>const NavBar(initialPage: 0));
   }
 
   void startTimer() {

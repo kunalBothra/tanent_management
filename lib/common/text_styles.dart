@@ -9,6 +9,18 @@ class CustomStyles {
     fontSize: 16.sp,
     color: HexColor('#6D6E6F'),
   );
+
+  static TextStyle amountFA4343W500S15 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 15.sp,
+    color: HexColor('#FA4343'),
+  );
+static TextStyle amountFA4343W700S12 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 12.sp,
+    color: HexColor('#FA4343'),
+  );
+
   static TextStyle titleText = TextStyle(
     fontWeight: FontWeight.w400,
     fontSize: 16.sp,
@@ -28,10 +40,32 @@ class CustomStyles {
     fontSize: 16.sp,
     color: HexColor('#000000'),
   );
+  static TextStyle black14 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 14.sp,
+    color: HexColor('#000000'),
+  );
   static TextStyle otpStyle050505 = TextStyle(
     fontFamily: 'Inter',
     fontWeight: FontWeight.w500,
     fontSize: 20.sp,
+    color: HexColor('#050505'),
+  );
+  static TextStyle address050505w400s12 = TextStyle(
+
+    fontWeight: FontWeight.w400,
+    fontSize: 12.sp,
+    color: HexColor('#050505'),
+  );
+
+  static TextStyle otpStyle050505W400S14 = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 14.sp,
+    color: HexColor('#050505'),
+  );
+  static TextStyle otpStyle050505W700S16 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 16.sp,
     color: HexColor('#050505'),
   );
   static TextStyle skipBlack = TextStyle(
@@ -60,8 +94,7 @@ class CustomStyles {
   );
 
   static TextStyle white12 = TextStyle(
-    fontFamily: 'Open Sans',
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w500,
     fontSize: 12.sp,
     color: HexColor('#FFFFFF'),
   );
@@ -111,6 +144,12 @@ class CustomStyles {
     fontFamily: 'Inter',
     fontWeight: FontWeight.w500,
     fontSize: 10.sp,
+    color: HexColor('#679BF1'),
+  );
+  static TextStyle blue679BF1w700s20 = TextStyle(
+    fontFamily: 'DM Sans',
+    fontWeight: FontWeight.w700,
+    fontSize: 20.sp,
     color: HexColor('#679BF1'),
   );
 }

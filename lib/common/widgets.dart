@@ -65,7 +65,10 @@ customTextField({
               prefixIcon: prefixIcon,
               contentPadding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 14.w),
               hintText: hintText,
-              suffixIcon: suffixIcon,
+              suffixIcon: Padding(
+                padding:  EdgeInsets.all(8.r),
+                child: suffixIcon,
+              ),
               hintStyle: hintStyle ?? CustomStyles.lightHint16,
               filled: isFilled ?? true,
               counterText: '',
@@ -88,7 +91,7 @@ Widget dropDownMenu() {
       return Padding(
         padding: EdgeInsets.only(left: 10.w),
         child: DropdownButton(
-          icon: Visibility(child: dropDownArrowIcon,visible: true,),
+          icon: Visibility(visible: true,child: dropDownArrowIcon,),
           underline: Container(),
           value: authCntrl.selectedItem.value,
           items: authCntrl.items.value.map((String item) {
@@ -152,6 +155,43 @@ customButton(
           )
               : Container()
         ],
+      ),
+    ),
+  );
+}
+
+//**********************Custom Drop Down****************************
+bigDropDown(
+{
+  required String selectedItem,
+  required List items,
+  required Function(String) onChange,
+}
+    ){
+  return Container(
+    height: 44.h,
+    width: Get.width,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8.r)
+          ,border: Border.all(color: HexColor('#EBEBEB'),width: 2)
+    ),
+    child: Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 10.w),
+      child: DropdownButton(
+        isExpanded: true,
+        icon: dropDownArrowIcon,
+        underline: Container(),
+        value: selectedItem,
+        items: items.map((item) {
+          return DropdownMenuItem(
+            value: item,
+            child:
+            Text(item,style:  CustomStyles.hintText,),
+          );
+        }).toList(),
+        onChanged:(item){
+          onChange(item.toString());
+        },
       ),
     ),
   );
@@ -265,16 +305,21 @@ resgisterPopup(
                 ),
               ),
               SizedBox(height: 15.h,),
-              Text(
-                subtitle,
-                style: title=='Logout'?CustomStyles.otpStyle050505.copyWith(fontFamily: 'DM Sans', fontSize: 16.sp, fontWeight: FontWeight.w400,decoration: TextDecoration.none) : TextStyle(
-                  fontFamily: 'Inter',
-                    decoration: TextDecoration.none,
-                    height: 1.4,
-                    color: HexColor('#6C6C6C'),
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500),
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Text(
+                  subtitle,
+                  textAlign: TextAlign.center,
+                  style: title=='Logout'?CustomStyles.otpStyle050505.copyWith(fontFamily: 'DM Sans', fontSize: 16.sp, fontWeight: FontWeight.w400,decoration: TextDecoration.none) : TextStyle(
+                    fontFamily: 'Inter',
+                      decoration: TextDecoration.none,
+                      height: 1.4,
+                      color: HexColor('#6C6C6C'),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
+              SizedBox(height: 15.h,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -510,3 +555,4 @@ willPopScope() async {
     },
   );
 }
+

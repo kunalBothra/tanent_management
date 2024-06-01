@@ -9,13 +9,24 @@ import 'package:tanent_management/screens/profile/documents/document_widgets.dar
 import '../../../common/text_styles.dart';
 
 class DocumentScreen extends StatelessWidget {
-   DocumentScreen({super.key});
+  final bool isFromTenant;
+   DocumentScreen({super.key, required this.isFromTenant});
 
     final docCntrl = Get.put(DocumentController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      appBar: AppBar(title: Text('Document', style: CustomStyles.skipBlack)),
+      appBar: AppBar(
+        leading: InkWell(
+          onTap: (){
+            Get.back();
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: backArrowImage,
+          ),
+        ),
+        title: Text(isFromTenant?'Kirayedar Documents':'Document', style: CustomStyles.skipBlack),centerTitle: true,),
       body: Column(
         children: [
           Divider(height: 1.h,color: HexColor('#EBEBEB'),),
@@ -24,7 +35,7 @@ class DocumentScreen extends StatelessWidget {
           child:
               DocumentWidgets().documentList(),
           ),
-          Padding(
+          isFromTenant?SizedBox.shrink():  Padding(
             padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 10.h),
             child: Row(
               children: [

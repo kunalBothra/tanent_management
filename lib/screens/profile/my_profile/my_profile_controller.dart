@@ -6,9 +6,9 @@ class MyProfileController extends GetxController{
 
 
   //functions
-  onEditProfileTap(){
+  onEditProfileTap(isFromProfile){
 
-    Get.to(()=>EditProfileVew());
+    Get.to(()=>EditProfileVew(isFromProfile: isFromProfile,));
 
   }
 }
