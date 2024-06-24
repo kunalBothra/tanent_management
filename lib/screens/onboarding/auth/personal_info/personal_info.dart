@@ -11,7 +11,8 @@ import 'package:tanent_management/screens/onboarding/auth/personal_info/personal
 import '../../../../common/text_styles.dart';
 
 class PersonalInfo extends StatelessWidget {
-  PersonalInfo({super.key});
+  bool? isFromRegister;
+  PersonalInfo({required this.isFromRegister, super.key});
 
   final personalInfoCntrl = Get.put(PersonalInfoController());
   final authCntrl = Get.put(AuthController());
@@ -27,7 +28,7 @@ class PersonalInfo extends StatelessWidget {
             padding: EdgeInsets.all(8.r),
             child: InkWell(
                 onTap: (){
-                  personalInfoCntrl.onSkipTap();
+                  personalInfoCntrl.onSkipTap(isFromRegister: isFromRegister);
                 },
                 child: Text('Skip', style: CustomStyles.skipBlack)),
           )
@@ -167,7 +168,7 @@ class PersonalInfo extends StatelessWidget {
                   ),
                   customButton(
                       onPressed: () {
-                        personalInfoCntrl.onNextTap();
+                      isFromRegister!?personalInfoCntrl.onSubmitPressed():  personalInfoCntrl.onNextTap(isFromRegister: isFromRegister);
                       },
                       text: 'Next',
                       width: Get.width,

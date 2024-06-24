@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tanent_management/screens/dashboard/tenant/tenant_list/tenant_list_widgets.dart';
 import 'package:tanent_management/screens/profile/documents/document_view.dart';
-
 import '../../../../common/constants.dart';
 import '../../../../common/text_styles.dart';
+import '../../management/management_view.dart';
 
 class TenantDetailScreen extends StatelessWidget {
   const TenantDetailScreen({super.key});
@@ -28,7 +28,9 @@ class TenantDetailScreen extends StatelessWidget {
         title: Text('Kirayedar Details', style: CustomStyles.otpStyle050505W700S16),
         actions: [
             InkWell(
-                onTap: (){},
+                onTap: (){
+                  Get.to(()=>ManagementScreen(isFromDashboard: true,));
+                },
                 child: addIcon),
           SizedBox(width: 15.w,),
           InkWell(

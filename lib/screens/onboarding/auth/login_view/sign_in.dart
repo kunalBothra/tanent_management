@@ -7,7 +7,9 @@ import 'package:tanent_management/screens/onboarding/auth/login_view/auth_contro
 import 'auth_widgets.dart';
 
 class SignInScreen extends StatelessWidget {
-   SignInScreen({super.key});
+  bool? isFromRegister;
+  bool? isFrstTime;
+   SignInScreen({required this.isFromRegister, this.isFrstTime, super.key});
 
    final authCntrl = Get.put(AuthController());
 
@@ -23,7 +25,7 @@ class SignInScreen extends StatelessWidget {
               child: Center(child: splashImage),
             ),
             AuthWidget.loginForm(),
-            AuthWidget.registrationBox()
+           isFromRegister!?SizedBox(): AuthWidget.registrationBox()
       
           ],
         ),

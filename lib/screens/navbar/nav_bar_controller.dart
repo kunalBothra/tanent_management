@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:tanent_management/screens/management/management_view.dart';
+import 'package:tanent_management/screens/navbar_management/navbar_management_view.dart';
 import 'package:tanent_management/screens/profile/my_profile/my_profile_view.dart';
 
 import '../dashboard/dashboard_view.dart';
@@ -18,7 +18,7 @@ class NavBarController extends GetxController{
   late final pages = [
     DashboardScreen(),
     ReportScreen(),
-    TenantListScreen(),
+    NavbarManagementScreen()    ,// TenantListScreen(),
     ExpenseScreen(),
     MyProfileView(),
   ];

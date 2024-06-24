@@ -16,7 +16,7 @@ class MyProfileWidget {
           height: 215.h,
           decoration: BoxDecoration(
             image: DecorationImage(
-                image: Image.asset('assets/icons/Frame.png').image,
+                image: Image.asset('assets/icons/my_profile.png').image,
                 fit: BoxFit.cover),
           ),
         ),

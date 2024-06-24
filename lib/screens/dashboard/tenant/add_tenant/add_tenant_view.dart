@@ -8,6 +8,7 @@ import 'package:tanent_management/screens/expense/add_expense/add_expense_contro
 import '../../../../common/constants.dart';
 import '../../../../common/text_styles.dart';
 import '../../../../common/widgets.dart';
+import '../../../onboarding/auth/login_view/auth_controller.dart';
 import '../../../profile/edit_profile/edit_profile_widget.dart';
 import 'add_tenant_controller.dart';
 
@@ -15,6 +16,7 @@ class AddTenantScreen extends StatelessWidget {
   AddTenantScreen({super.key});
 
   final addTenantCntrl = Get.put(AddTenantController());
+  final authCntrl = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {

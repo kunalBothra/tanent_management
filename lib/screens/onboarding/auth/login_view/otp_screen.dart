@@ -8,7 +8,8 @@ import '../../../../common/constants.dart';
 import '../../../../common/widgets.dart';
 
 class OtpScreen extends StatelessWidget {
-   OtpScreen({super.key});
+  bool? isFromRegister;
+  OtpScreen({required this.isFromRegister, super.key});
 
   final authCntrl = Get.find<AuthController>();
 
@@ -17,7 +18,7 @@ class OtpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding:  EdgeInsets.symmetric(horizontal: 10.w),
+          padding: EdgeInsets.symmetric(horizontal: 10.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -25,8 +26,13 @@ class OtpScreen extends StatelessWidget {
                 height: 20.h,
               ),
               backArrowIcon(),
-              AuthWidget.otpTextFields(),
-              customButton(onPressed: (){authCntrl.onOtpSubmitPressed();},text: 'Submit', width: Get.width),
+              AuthWidget.otpTextFields(isFromRegister: isFromRegister!),
+              customButton(
+                  onPressed: () {
+                 isFromRegister!?authCntrl.onSubmitTapfromRegister():   authCntrl.onOtpSubmitPressed();
+                  },
+                  text: 'Submit',
+                  width: Get.width),
               AuthWidget.resendButtonWidget()
             ],
           ),

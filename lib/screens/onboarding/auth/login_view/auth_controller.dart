@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tanent_management/screens/navbar/navbar_view.dart';
 import 'package:tanent_management/screens/onboarding/auth/login_view/otp_screen.dart';
+import 'package:tanent_management/screens/onboarding/auth/personal_info/personal_info.dart';
 
 class AuthController extends GetxController{
   //variables
@@ -11,6 +12,7 @@ class AuthController extends GetxController{
   var items = ["  +91", "  +64"].obs;
 
   final isTimeComplete = false.obs;
+  final isFromRegister = false.obs;
   final countdownTimer = Rxn<Timer>().obs;
   final myDuration = const Duration(seconds: 60).obs;
 
@@ -33,7 +35,10 @@ class AuthController extends GetxController{
   }
 
   onLoginPressed(){
-    Get.to(()=> OtpScreen());
+    Get.to(()=> OtpScreen(isFromRegister: isFromRegister.value,));
+  }
+  onSubmitTapfromRegister(){
+    Get.to(()=> PersonalInfo(isFromRegister: isFromRegister.value,));
   }
 
   onOtpSubmitPressed(){

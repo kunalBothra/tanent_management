@@ -33,7 +33,7 @@ class WalkThroughController extends GetxController{
   }
   onNextClicked(){
     if(checkboxValue.value){
-      Get.to(()=>SignInScreen());
+      Get.to(()=>SignInScreen(isFromRegister: false,));
     }
     else{
       customSnackBar(Get.context!, 'Please accept terms and conditions');

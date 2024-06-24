@@ -10,8 +10,8 @@ import '../../../../common/text_styles.dart';
 import '../../../../common/widgets.dart';
 
 class LandlordDocView extends StatelessWidget {
-   LandlordDocView({super.key});
-
+  bool? isFromregister;
+   LandlordDocView({ this.isFromregister, super.key});
   final landlordDocCntrl = Get.put(LandlordDocController());
 
   @override
@@ -92,7 +92,7 @@ class LandlordDocView extends StatelessWidget {
                           borderColor: HexColor('#679BF1'),
                           textColor: HexColor('#679BF1')),
                       customBorderButton('Submit', () {
-                        landlordDocCntrl.onSubmitTap();
+                        landlordDocCntrl.onSubmitTap(isFromRegistered: isFromregister);
                       },
                           verticalPadding: 10.h,
                           horizontalPadding: 2.w,

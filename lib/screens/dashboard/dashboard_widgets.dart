@@ -13,6 +13,8 @@ class DashBoardWidgets{
 
   //app bar
   appBar(){
+    final dashCntrl = Get.find<DashBoardController>();
+
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 16.w,vertical: 5.h),
       child: Row(
@@ -22,7 +24,25 @@ class DashBoardWidgets{
               height: 42.h,
               width: 94.35.w,
               child: splashImage),
-          notifIcon
+          Spacer(),
+
+          Row(
+            children: [
+              InkWell(
+                  onTap: (){
+                    dashCntrl.onSearchTap();
+
+                  },
+                  child: searchIcon),
+              SizedBox(width: 20.w,),
+              GestureDetector(
+                  onTap: (){
+                    dashCntrl.onNotifTap();
+                  },
+                  child: notifIcon),
+
+            ],
+          )
         ],
       ),
     );

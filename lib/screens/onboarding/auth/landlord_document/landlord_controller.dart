@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:tanent_management/screens/onboarding/auth/login_view/sign_in.dart';
 
+import '../../../navbar/navbar_view.dart';
+
 class LandlordDocController extends GetxController{
   final aadharCntrl = TextEditingController().obs;
   final govIdCntrl = TextEditingController().obs;
@@ -21,8 +23,9 @@ class LandlordDocController extends GetxController{
     Get.back();
   }
 
-  onSubmitTap(){
-    Get.offAll(()=>SignInScreen());
+  onSubmitTap({required bool? isFromRegistered}){
+    isFromRegistered!?  Get.offAll(()=>const NavBar(initialPage: 0))
+    :  Get.offAll(()=>SignInScreen(isFromRegister: isFromRegistered,));
   }
 
 

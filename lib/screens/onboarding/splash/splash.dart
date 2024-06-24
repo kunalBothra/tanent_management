@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
                           : onboardCntrl.userData.value != null
                           ? const NavBar(initialPage: 0,)
                           // :SignInScreen();
-                       : SignInScreen();
+                       : SignInScreen(isFromRegister: false,isFrstTime: true,);
                     }
 
                   ), // SignInScreen(),

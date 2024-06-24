@@ -5,15 +5,28 @@ import 'package:hexcolor/hexcolor.dart';
 
 class PersonlInfoWidget{
 
-  static   commomText(String title, {bool? isMandatory=false}){
+  static   commomText(String title, {bool isMandatory=false,TextStyle? style,Widget? icon }){
     return Padding(
       padding:  EdgeInsets.only(top: 5.h,bottom: 5.h),
-      child: isMandatory!? Row(
+      child:icon!=null? isMandatory? Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title,style: TextStyle(fontFamily: 'Inter', color: HexColor('#111111'),fontSize: 16.sp)),
-          Text('*',style: TextStyle(fontFamily: 'Inter', color: HexColor('#EF5E4E'),fontSize: 16.sp)),
+          Row(
+            children: [
+              Text(title,style:style?? TextStyle(fontFamily: 'Inter', color: HexColor('#111111'),fontSize: 16.sp)),
+              Text('*',style: style??TextStyle(fontFamily: 'Inter', color: HexColor('#EF5E4E'),fontSize: 16.sp)),
+            ],
+          ),
+          icon
         ],
-      ):Text(title,style: TextStyle(fontFamily: 'Inter', color: HexColor('#111111'),fontSize: 16.sp)),
+      ): Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title,style:style?? TextStyle(fontFamily: 'Inter', color: HexColor('#111111'),fontSize: 16.sp)),
+          icon
+        ],
+      ):
+      Text(title,style:style?? TextStyle(fontFamily: 'Inter', color: HexColor('#111111'),fontSize: 16.sp)),
     );
   }
 }

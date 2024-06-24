@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../../common/text_styles.dart';
+import '../../../navbar/navbar_view.dart';
 import '../landlord_document/landlord_view.dart';
 
 class PersonalInfoController extends GetxController{
@@ -34,12 +35,15 @@ class PersonalInfoController extends GetxController{
 
 
   //functions
-   onSkipTap(){
-      Get.to(()=> LandlordDocView());
+   onSkipTap({required bool? isFromRegister}){
+      Get.to(()=> LandlordDocView(isFromregister: isFromRegister,));
    }
 
-   onNextTap(){
-      Get.to(()=> LandlordDocView());
+   onNextTap({required bool? isFromRegister}){
+      Get.to(()=> LandlordDocView(isFromregister: isFromRegister,));
    }
 
+   onSubmitPressed(){
+      Get.offAll(()=>const NavBar(initialPage: 0));
+   }
 }

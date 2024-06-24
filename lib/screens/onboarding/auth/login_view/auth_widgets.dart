@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tanent_management/common/text_styles.dart';
 import 'package:tanent_management/screens/onboarding/auth/login_view/auth_controller.dart';
+import 'package:tanent_management/screens/onboarding/auth/login_view/sign_in.dart';
 
 import '../../../../common/widgets.dart';
 import '../personal_info/personal_info.dart';
@@ -35,13 +36,15 @@ class AuthWidget{
             SizedBox(height: 20.h,),
             customButton(onPressed:(){
               authCntrl.onLoginPressed();
-            } ,text: 'Login',width: Get.width)
+            } ,text: authCntrl.isFromRegister.value?'Proceed': 'Login',width: Get.width)
           ],
         ),
       );
   }
 
   static registrationBox(){
+    final authCntrl = Get.find<AuthController>();
+
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 15.w),
       child: Container(
@@ -68,14 +71,17 @@ class AuthWidget{
                   button1: 'Landlord',
                   button2: 'Tenants',
                   onButton1Tap: () {
+                    authCntrl.isFromRegister.value=true;
                     Get.back();
                     Get.to(()=>
-                        PersonalInfo());
+                    authCntrl.isFromRegister.value?SignInScreen(isFromRegister: authCntrl.isFromRegister.value): PersonalInfo(isFromRegister: authCntrl.isFromRegister.value,));
+
                   },
                   onButton2Tap: (){
+                    authCntrl.isFromRegister.value=true;
                     Get.back();
                     Get.to(()=>
-                        PersonalInfo());
+                    authCntrl.isFromRegister.value?SignInScreen(isFromRegister: authCntrl.isFromRegister.value): PersonalInfo(isFromRegister:authCntrl. isFromRegister.value,));
                   },
                 );
               },text: 'Register Now',height: 37.h)
@@ -86,14 +92,14 @@ class AuthWidget{
     );
   }
 
-  static otpTextFields(){
+  static otpTextFields({required bool? isFromRegister}){
     final authCntrl = Get.find<AuthController>();
 
    return Column(
      crossAxisAlignment: CrossAxisAlignment.start,
      children: [
-       SizedBox(height: 20.h,),
-       Text('Welcome back',style: TextStyle(
+       SizedBox(height:isFromRegister!?0.h: 20.h,),
+       isFromRegister!?SizedBox(): Text('Welcome back',style: TextStyle(
          fontWeight: FontWeight.w600,
          fontSize: 20.sp,
          color: HexColor('#111111'),
