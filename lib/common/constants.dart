@@ -27,6 +27,7 @@ Image attachIcon = Image.asset("assets/icons/attach_icon.png",height: 18.61.h,wi
 
 
 Image walkThroughImage = Image.asset("assets/images/walk_through_image.png",height: 420.h);
+Image profileImage = Image.asset("assets/icons/propertyImage.png",height: 350.h);
 Image getStartedButtonIcon = Image.asset("assets/icons/get_started_button_icon.png",height: 9.h,width: 9.w,);
 
 Image emptyTenantImage = Image.asset("assets/images/empty_tenant_image.png",height: 341.35.h,width: 343.w,);
